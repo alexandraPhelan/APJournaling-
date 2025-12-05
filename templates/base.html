@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>APJournaling</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header>
+    <h1>APJournaling (Secure Version)
+</h1>
+    {% if session.get('username') %}
+        <p>Logged in as {{ session['username'] }}</p>
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+            <a href="{{ url_for('create_entry') }}">New Entry</a> |
+            <a href="{{ url_for('search') }}">Search</a> |
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    {% else %}
+        <nav>
+            <a href="{{ url_for('login') }}">Login</a> |
+            <a href="{{ url_for('register') }}">Register</a>
+        </nav>
+    {% endif %}
+    <hr>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>
