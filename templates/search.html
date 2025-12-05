@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search Entries</h2>
+
+<form method="get" action="{{ url_for('search') }}">
+    <input type="text" name="q" id="q" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+
+<p>You searched for: {{ query }}</p>
+
+<div id="client-result"></div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const q = params.get("q") || "";
+document.getElementById("client-result").innerText =
+    "Client-side echo of search: " + q;
+</script>
+
+{% if results %}
+<h3>Results</h3>
+<ul>
+{% for e in results %}
+    <li>
+        <a href="{{ url_for('view_entry', entry_id=e['id']) }}">
+            {{ e['title'] }} ({{ e['created_at'] }})
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No results found.</p>
+{% endif %}
+
+{% endblock %}
+

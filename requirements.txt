@@ -1,0 +1,15 @@
+Flask==2.3.3
+Werkzeug==2.3.7
+itsdangerous==2.1.2
+Jinja2==3.1.2
+click==8.1.7
+
+# Database
+sqlite3-binary==0.0.1
+
+# Automated Testing
+selenium==4.17.2
+webdriver-manager==4.0.1
+
+# Security & Hashing is already included in Flask/Werkzeug
+
